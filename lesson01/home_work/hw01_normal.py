@@ -1,5 +1,5 @@
 
-__author__ = 'Сироткин Алексей Михайлович'
+__author__ = 'Ваши Ф.И.О.'
 
 # Задача-1: Дано произвольное целое число, вывести самую большую цифру этого числа.
 # Например, дается x = 58375.
@@ -10,16 +10,6 @@ __author__ = 'Сироткин Алексей Михайлович'
 # * постарайтесь решить задачу с применением арифметики и цикла while;
 # * при желании и понимании решите задачу с применением цикла for.
 
-number = int(input('Input a number '))
-
-max_number = 0
-while number:
-  current_number = number % 10
-  if current_number > max_number:
-    max_number = current_number
-  number //= 10
-
-print('max number is ', max_number)
 
 # Задача-2: Исходные значения двух переменных запросить у пользователя.
 # Поменять значения переменных местами. Вывести новые значения на экран.
@@ -28,37 +18,10 @@ print('max number is ', max_number)
 # * постарайтесь сделать решение через действия над числами;
 # * при желании и понимании воспользуйтесь синтаксисом кортежей Python.
 
-var_1 = int(input('Input a number... '))
-var_2 = int(input('Input another number... '))
-
-var_1 += var_2
-var_2 = var_1 - var_2
-var_1 = var_1 - var_2
-
-print('var_1 = ', var_1, 'var_2 = ', var_2)
 
 # Задача-3: Напишите программу, вычисляющую корни квадратного уравнения вида
 # ax² + bx + c = 0.
 # Коэффициенты уравнения вводятся пользователем.
 # Для вычисления квадратного корня воспользуйтесь функцией sqrt() модуля math:
-import math
+# import math
 # math.sqrt(4) - вычисляет корень числа 4
-
-a = int(input('a = '))
-b = int(input('b = '))
-c = int(input('c = '))
-
-D = b ** 2 - (4 * a * c)
-
-x_1 = None
-x_2 = None
-
-if D < 0:
-  print('There is no answer')
-elif D == 0:
-  x_1 = (-b + math.sqrt(D)) / 2 * a
-  print('Answer is ', x_1)
-else:
-  x_1 = (-b + math.sqrt(D)) / 2 * a
-  x_2 = (-b - math.sqrt(D)) / 2 * a
-  print('Answer is ', x_1, x_2)
