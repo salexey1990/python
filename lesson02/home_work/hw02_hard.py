@@ -4,6 +4,12 @@
 equation = 'y = -12x + 11111140.2121'
 x = 2.5
 # вычислите и выведите y
+list_1 = equation.split(' ')
+
+k = float(list_1[2][0:-1])
+b = float(list_1[4])
+y = k * x + b
+print(y)
 
 
 # Задание-2: Дата задана в виде строки формата 'dd.mm.yyyy'.
@@ -19,10 +25,26 @@ x = 2.5
 # Пример корректной даты
 date = '01.11.1985'
 
+def validate_date(date):
+  day, month, year = date.split('.')
+  if int(year) not in range(1, 9999):
+    return 'incorrect'
+  if int(month) not in range(1, 12):
+    return 'incorrect'
+  if int(month) % 2 and int(day) not in range(1, 31):
+    return 'incorrect'
+  if not (int(month) % 2) and int(day) not in range(1, 30):
+    return 'incorrect'
+  return 'correct'
+
+print(validate_date(date))
 # Примеры некорректных дат
 date = '01.22.1001'
+print(validate_date(date))
 date = '1.12.1001'
+print(validate_date(date))
 date = '-2.10.3001'
+print(validate_date(date))
 
 
 # Задание-3: "Перевёрнутая башня" (Задача олимпиадного уровня)
