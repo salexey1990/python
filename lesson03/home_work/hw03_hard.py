@@ -18,6 +18,51 @@
 # они получают удвоенную ЗП, пропорциональную норме.
 # Кол-во часов, которые были отработаны, указаны в файле "data/hours_of"
 
+import csv
+import os
+
+tariff_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'data', 'workers')
+hours_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'data', 'hours_of')
+
+ 
+def make_matrix(path):
+  arr = []
+  with open(path, newline='') as f_obj:
+    reader = csv.reader(f_obj, delimiter=' ')
+
+    for row in reader:
+      row = list(filter(None, row))
+      arr.append(row)
+  del arr[0]
+  return arr
+
+def calculate_salary(tariff_matrix, hours_matrix):
+  salary_matrix = []
+
+  for hours_row in hours_matrix:
+    for tariff_row in tariff_matrix:
+      if hours_row[0] == tariff_row[0] and hours_row[1] == tariff_row[1]:
+        salary_row = []
+        salary_row.append(hours_row[0])
+        salary_row.append(hours_row[1])
+        salary = float(tariff_row[2])
+        hours_by_tariff = float(tariff_row[4])
+        hours_in_fact = float(hours_row[2])
+        salary_per_hour = salary / hours_by_tariff
+        if hours_by_tariff >= hours_in_fact:
+          salary_row.append(salary_per_hour * hours_in_fact)
+        else:
+          salary_row.append(salary + (hours_in_fact - hours_by_tariff) * (salary_per_hour * 2))
+        salary_matrix.append(salary_row)
+        break
+  
+  return salary_matrix
+    
+tariff_matrix = make_matrix(tariff_path)
+hours_matrix = make_matrix(hours_path)
+
+print(calculate_salary(tariff_matrix, hours_matrix))
+
 
 # Задание-3:
 # Дан файл ("data/fruits") со списком фруктов.
