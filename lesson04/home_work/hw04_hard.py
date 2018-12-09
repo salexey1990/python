@@ -4,6 +4,8 @@
 matrix = [[1, 0, 8],
           [3, 4, 1],
           [0, 4, 2]]
+
+print("rotate_matrix = ", list(map(list, zip(*matrix))))
           
 # Выполнить поворот (транспонирование) матрицы
 # Пример. Результат:
@@ -39,6 +41,23 @@ number = """
 05886116467109405077541002256983155200055935729725
 71636269561882670428252483600823257530420752963450"""
 
+from functools import reduce
+
+number = ''.join(char for char in number if char != '\n')
+
+pos = 0
+product = 0
+current_product = 0
+
+for i in range(5,1005,5):
+  current_product = reduce((lambda x, y: int(x) * int(y)), number[i-5:i])
+  if current_product > product:
+    product = current_product
+    pos = i-5
+
+print(product)
+print(pos)
+print(number[365:370])
 
 # Задание-3 (Ферзи):
 # Известно, что на доске 8×8 можно расставить 8 ферзей так, чтобы они не били
